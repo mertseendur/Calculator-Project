@@ -1,0 +1,126 @@
+import math
+# Matematik modüllerini aktif etmek için "import" kullanılır.
+
+def add(a, b):
+    result = a + b
+    return result
+
+def sub(a, b):
+    result = a - b
+    return result
+
+def mul(a, b):
+    result = a * b
+    return result
+
+def div(a, b):
+    if b != 0:
+        result = a / b
+        return result
+    else:
+        return "Undefined"
+
+def power(a, b):
+    return a ** b 
+#a ** b olarak gösterilebilmekle beraber math.pow(a, b) olarak da tanımlanabilirdi.
+
+def square_root(a):
+    return math.sqrt(a)
+
+def get_number_input(prompt):
+    while True:
+        user_input = input(prompt)
+        try:
+            return float(user_input)
+        except ValueError:
+            print("Geçersiz giriş! Lütfen bir sayı girin.")
+#burada eklenen get_numbber_input hatalı girişleri kontrol etmek istediğimiz bir fonksiyonumuzdur.
+#"try-expect" bloğunu girilen girdinin bir sayıya dönüştürülüp dönüştürelemeyeceğini kontrol ediyor.
+
+def factorial(n):
+    if n < 0:
+        return "Geçersiz giriş! Pozitif bir tam sayı girin."
+    else:
+        return math.factorial(int(n)) 
+    
+def logaritma(a, base) :
+    if a > 0 and base > 0 and base != 1:
+        return math.log(a, base)
+    else:
+        return "Geçersiz giriş! Pozitif sayılar ve logaritmanın tabanı 1 olmayan bir sayı kullanın" 
+
+def sin_acisi(aci):
+    return math.sin(math.radians(aci))
+def cos_acisi(aci):
+    return math.cos(math.radians(aci))
+def tan_acisi(aci):
+    return math.tan(math.radians(aci))
+  
+
+#Operatörler tanımlandı, bölme için ise paydaya "0" gelebilme durumunun parametreleri ifade edildi.
+    
+#Kullandığımız "while" bir döngü, "while True" ise işlem kapanmadığı ya da doğru sonuç aldığı sürece sonsuz döngüye devam edecektir anlamı taşır.    
+if __name__ == "__main__":
+    while True:
+        print("Hesap Makinesi")
+        print("1. Toplama")
+        print("2. Çıkarma") 
+        print("3. Çarpma")   
+        print("4. Bölme")
+        print("5. Üs Alma")
+        print("6. Karekök Alma")
+        print("7. Faktöriyel Hesaplama")
+        print("8. Logaritma Hesaplama")
+        print("9. Sinüs Hesaplama")
+        print("10. Kosinüs Hesaplama")
+        print("11. Tanjant Hesaplama")
+        print("q. Çıkış")
+        choice = input("Choose Operation (1-11 or q) ")
+        if choice == "q":
+            print("Exiting...")
+            break
+        elif choice in ["1", "2", "3", "4"]:
+            a = float(input("1. sayı: "))
+            b = float(input("2. sayı: "))
+            if choice == "1":
+                print("Result:", add(a, b))
+            elif choice == "2":
+                print("Result:", sub(a, b))
+            elif choice == "3":
+                print("Result:", mul(a, b))
+            elif choice == "4":
+                print("Result:", div(a, b))
+            
+        elif choice == "5":
+                a = float(input("Taban: "))
+                b = float(input("Üs: "))
+                print("Result: ", power(a, b))
+
+        elif choice == "6":
+            a = get_number_input("Sayı: ")
+            print("Result: ", square_root(a)) 
+
+        elif choice == "7":
+            n = get_number_input("Sayı: ")
+            print("Result: ", factorial(int(n))) 
+
+        elif choice == "8":
+            a = float(input("Sayıyı girin: "))
+            base = float(input("Logaritmanın tabanını girin: "))
+            print("Result: ", logaritma(a, base))  
+
+        elif choice == "9":
+            aci = float(input("Açıyı girin: "))
+            print("Result: ", sin_acisi(aci))
+        elif choice == "10":
+            aci = float(input("Açıyı girin: "))
+            print("Result: ", cos_acisi(aci))
+        elif choice == "11":
+            aci = float(input("Açıyı girin: "))
+            print("Result: ", tan_acisi(aci))   
+    
+        else:
+            print("Invalid selection. Please enter a number 1-11 or the q key")       
+
+#Kullandığımız elif; eğer if diye belirttiğimiz durunmdaki aranan şey kodun karşısına çıkmaz ise bir nevi sigortası gibi o tercih edilir.
+#Else ise if veya while olmadığı zaman ki karşımıza çıkacak sonuçtur.
